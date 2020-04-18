@@ -1,0 +1,12 @@
+{
+  "Import Sass Package": {
+    "scope": "sass,scss",
+    "prefix": "pkg",
+    "body": ["@use '@/styles/package' as *;"]
+  },
+  "Import style.scss": {
+    "scope": "typescriptreact",
+    "prefix": "styl",
+    "body": "import './style.scss'"
+  }
+}
