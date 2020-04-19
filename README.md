@@ -8,6 +8,7 @@
 
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [sort-imports](https://marketplace.visualstudio.com/items?itemName=amatiasq.sort-imports)
 
 ## Dev
 
