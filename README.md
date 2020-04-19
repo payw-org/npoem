@@ -1,6 +1,8 @@
-<h1 align="center">N poem</h1>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/19797697/79691571-5ffa4380-829b-11ea-8b93-6729ca5245c5.png" width="400" />
+</p>
 
-## Prerequisites
+# Prerequisites
 
 **Node.js >= 13**
 
@@ -10,14 +12,14 @@
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [sort-imports](https://marketplace.visualstudio.com/items?itemName=amatiasq.sort-imports)
 
-## Dev
+# Dev
 
 ```zsh
 > npm install
 > npm run dev
 ```
 
-## Branches
+# Branches
 
 **`master`**
 
@@ -29,9 +31,13 @@ After heavily tested the master branch, tag and release using SemVer.
 
 > For more information creating branches, read the [PAYW Contributing Guidelines](https://github.com/paywteam/contributing-guidelines#git-branch-names).
 
-## Development Guides
+# Development Guides
 
-### Pages
+- [Pages](#Pages)
+- [Components](#Components)
+- [Sass](#Sass)
+
+## Pages
 
 Next.js gracefully generates routes based on the files/directories structure inside the `pages`. It is much easier to manage and visualize them and reduces overheads configuring the routes. You can write a page component just like the other normal React components.
 
@@ -99,7 +105,7 @@ Share the same props type if a page receives some data from server side.
 + }
 ```
 
-**VSCode Snippet**
+### VSCode Snippet
 
 We prepare a simple snippet for creating a new page component.
 
@@ -107,7 +113,7 @@ We prepare a simple snippet for creating a new page component.
 
 <img src="https://user-images.githubusercontent.com/19797697/79678474-f9dbd500-8236-11ea-8118-fa5105a9eea9.gif" width="500" />
 
-### Components
+## Components
 
 Basically components are structured like below.
 
@@ -151,7 +157,7 @@ components
 └─ TheirComponent.scss
 ```
 
-With these approaches, duplicate names distract our vision which results in hardness to easily index what components are there. Also the **Approach2** doesn't even allow to nest child components into a component.
+With these approaches, duplicate names distract our vision which results in hardness to easily index what components are there. Also the **Approach 2** doesn't even allow to nest child components into a component.
 
 What is worse, in terms of refactoring, there are many namespaces you have to modify.
 
@@ -168,7 +174,7 @@ What is worse, in terms of refactoring, there are many namespaces you have to mo
 
 We strongly follow the principles of **Single source of truth** and **DRY(Don't Repeat Yourself)**.
 
-**VSCode Snippet**
+### VSCode Snippet
 
 Alongside a page snippet, we also prepare a snippet for creating a new React component.
 
@@ -180,7 +186,7 @@ Alongside a page snippet, we also prepare a snippet for creating a new React com
 
 <img src="https://user-images.githubusercontent.com/19797697/79678733-68219700-8239-11ea-9586-67840017e446.gif" width="450" />
 
-**Child Components**
+### Child Components
 
 If a component is composed of several child components and they're only used inside that component, put them under the parent's component.
 
@@ -200,7 +206,7 @@ components
 
 > If one of the child components are imported from the components other than its **_parent_**, it should not placed under the **_parent_**.
 
-**Class Name**
+### Class Name
 
 Name the mostly outer element's class with `component-{component-name}`.
 
@@ -238,4 +244,4 @@ const Book: React.FC = () => {
 }
 ```
 
-In this way, we can create a unique stylesheet scope without using **module** feature of Next.js which append a randomly unique string to each class name.
+In this way, we can create a unique stylesheet scope without using [**module**](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) feature of Next.js which append a randomly unique string to each class name.
