@@ -152,7 +152,7 @@ components
 
 With these approaches, duplicate names distract our vision which results in hardness to easily index what components are there. Also the **Approach2** doesn't even allow to nest child components into a component.
 
-In terms of refactoring, there are many namespaces you have to change.
+What is worse, in terms of refactoring, there are many namespaces you have to modify.
 
 ```diff
   components
@@ -201,7 +201,9 @@ components
 
 **Class Name**
 
-Name the mostly outer element's class with `component-{component-name}`. For example,
+Name the mostly outer element's class with `component-{component-name}`.
+
+For example,
 
 ```tsx
 const Home: React.FC = () => {
