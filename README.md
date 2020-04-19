@@ -238,4 +238,4 @@ const Book: React.FC = () => {
 }
 ```
 
-In this way, we can create a unique stylesheet scopes without using **module** feature of Next.js which append a randomly unique string to each class name.
+In this way, we can create a unique stylesheet scope without using **module** feature of Next.js which append a randomly unique string to each class name.
