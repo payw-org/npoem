@@ -72,6 +72,8 @@ What bad thing happen here is that they're not organized together even if they'r
 So we're going to use a page component just like a **bridge**. Create a page component as extremely simple as possible making it needless to frequently visit again once it is created.
 
 ```tsx
+// src/pages/home/index.tsx
+
 import { NextPage } from 'next'
 import Home from '@/components/Home'
 
