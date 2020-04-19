@@ -61,7 +61,7 @@ pages
    └─ index.tsx
 ```
 
-What bad things happen here is that they're not organized together even if they're strongly related and you have to keep moving around two directories.
+What bad thing happen here is that they're not organized together even if they're strongly related and you have to keep moving around two directories.
 
 So we're going to use a page component just like a **bridge**. Create a page component as extremely simple as possible making it needless to frequently visit again once it is created.
 
