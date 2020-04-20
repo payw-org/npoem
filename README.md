@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/19797697/79691571-5ffa4380-829b-11ea-8b93-6729ca5245c5.png" width="400" />
 </p>
 
-# Prerequisites
+## Prerequisites
 
 **Node.js >= 13**
 
@@ -12,14 +12,14 @@
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [sort-imports](https://marketplace.visualstudio.com/items?itemName=amatiasq.sort-imports)
 
-# Dev
+## Dev
 
 ```zsh
 > npm install
 > npm run dev
 ```
 
-# Branches
+## Branches
 
 **`master`**
 
@@ -31,13 +31,13 @@ After heavily tested the master branch, tag and release using SemVer.
 
 > For more information creating branches, read the [PAYW Contributing Guidelines](https://github.com/paywteam/contributing-guidelines#git-branch-names).
 
-# Development Guides
+## Development Guides
 
 - [Pages](#Pages)
 - [Components](#Components)
 - [Sass](#Sass)
 
-## Pages
+### Pages
 
 Next.js gracefully generates routes based on the files/directories structure inside the `pages`. It is much easier to manage and visualize them and reduces overheads configuring the routes. You can write a page component just like the other normal React components.
 
@@ -107,7 +107,7 @@ Share the same props type if a page receives some data from server side.
 + }
 ```
 
-### VSCode Snippet
+**VSCode Snippet**
 
 We prepare a simple snippet for creating a new page component.
 
@@ -115,7 +115,7 @@ We prepare a simple snippet for creating a new page component.
 
 <img src="https://user-images.githubusercontent.com/19797697/79678474-f9dbd500-8236-11ea-8118-fa5105a9eea9.gif" width="500" />
 
-## Components
+### Components
 
 Basically components are structured like below.
 
@@ -176,7 +176,7 @@ What is worse, in terms of refactoring, there are many namespaces you have to mo
 
 We strongly follow the principles of **Single source of truth** and **DRY(Don't Repeat Yourself)**.
 
-### VSCode Snippet
+**VSCode Snippets**
 
 Alongside a page snippet, we also prepare a snippet for creating a new React component.
 
@@ -208,7 +208,7 @@ components
 
 > If one of the child components are imported from the components other than its **_parent_**, it should not placed under the **_parent_**.
 
-### Class Name
+**Class Name**
 
 Name the mostly outer element's class with `component-{component-name}`.
 
