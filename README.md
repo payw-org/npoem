@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/19797697/79691571-5ffa4380-829b-11ea-8b93-6729ca5245c5.png" width="400" />
-</p>
+![Logo](https://user-images.githubusercontent.com/19797697/79859499-0feebe80-840c-11ea-9afe-3d3fb0cae7e2.png)
 
 ## Prerequisites
 
