@@ -8,4 +8,7 @@ module.exports = withSass({
 
     return config
   },
+  devIndicators: {
+    autoPrerender: false,
+  },
 })
