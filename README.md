@@ -33,7 +33,7 @@ After heavily tested the master branch, tag and release using SemVer.
 
 - [Pages](#Pages)
 - [Components](#Components)
-- [Sass](#Sass)
+- [Code Style](#Code-Style)
 
 ### Pages
 
@@ -245,3 +245,7 @@ const Book: React.FC = () => {
 ```
 
 In this way, we can create a unique stylesheet scope without using [**module**](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) feature of Next.js which append a randomly unique string to each class name.
+
+## Code Style
+
+Check out [PAYW Contributing Guidelines](https://github.com/paywteam/contributing-guidelines#line-break-between-different-scopes)
