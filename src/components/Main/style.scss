@@ -1,3 +1,5 @@
+@use '@/styles/package' as *;
+
 .component-main {
   display: flex;
   align-items: center;
@@ -8,5 +10,9 @@
     font-size: 3rem;
     font-weight: 200;
     letter-spacing: -0.03em;
+
+    @include on-mobile {
+      font-size: 2rem;
+    }
   }
 }
