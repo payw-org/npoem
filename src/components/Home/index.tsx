@@ -6,7 +6,7 @@ type MainProps = {}
 
 const Main: React.FC<MainProps> = () => {
   return (
-    <main className="component-home">
+    <main className="home" data-component="">
       <PoemBoard />
     </main>
   )

@@ -4,7 +4,7 @@ type PoemBoardProps = {}
 
 const PoemBoard: React.FC<PoemBoardProps> = () => {
   return (
-    <div className="component-poem-board">
+    <div className="poem-board" data-component="">
       <RingProgress />
     </div>
   )
