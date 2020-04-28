@@ -16,6 +16,8 @@ body {
   overflow-anchor: none;
   margin: 0;
   font-family: $font-family;
+  background-color: #fff;
+  color: var(--alt-black);
 }
 
 * {
