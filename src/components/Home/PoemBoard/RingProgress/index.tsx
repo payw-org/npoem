@@ -1,56 +1,103 @@
 import './style.scss'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-type BeginningProgressProps = {
+type RingProgressProps = {
   /** @default 3 */
   stroke?: number
   /** @default 125 */
   radius?: number
   /** @default 5 */
-  seconds?: number
-  /** @default 0 */
-  timeout?: number
-  everySecondHook?: (remainingSecond: number) => void
+  totalSeconds?: number
+  /**
+   * Delay before begin in milliseconds
+   * @default 0
+   */
+  delay?: number
+  /**
+   * Fire on every second
+   *
+   * @param remainingSecond Currently remaining seconds
+   * @param totalSeconds
+   */
+  everySecondHook?: (remainingSecond: number, totalSeconds: number) => void
+  /**
+   * Fire when the remaining seconds is 0
+   */
   endHook?: () => void
+  /**
+   * Fire after the animation completely ends
+   */
+  animationEndHook?: () => void
 }
 
-const BeginningProgress: React.FC<BeginningProgressProps> = (props) => {
-  const { stroke = 3, radius = 125 } = props
+const RingProgress: React.FC<RingProgressProps> = (props) => {
+  const {
+    stroke = 3,
+    radius = 125,
+    totalSeconds = 5,
+    delay = 0,
+    everySecondHook,
+    endHook,
+    animationEndHook,
+  } = props
   const normalizedRadius = radius - stroke * 2
   const circumference = normalizedRadius * 2 * Math.PI
-  const [percent, setPercent] = useState(100)
   const [strokeDashoffset, setStrokeDashoffset] = useState(
-    circumference - (percent / 100) * circumference
+    circumference - (100 / 100) * circumference
   )
-  const [remainingSecond, setRemainingSecond] = useState(percent / 20)
+  const [remainingSeconds, setRemainingSecond] = useState(totalSeconds)
 
-  useEffect(() => {
-    setRemainingSecond(percent / 20)
-  }, [percent])
+  function setProgress(percentage: number): void {
+    const offset = circumference - (percentage / 100) * circumference
 
-  function setProgress(percent: number): void {
-    setPercent(percent)
-    const offset = circumference - (percent / 100) * circumference
     setStrokeDashoffset(offset)
   }
 
+  const circleRef = useRef<SVGCircleElement>(null)
+
   useEffect(() => {
-    const intv = setInterval(() => {
-      setPercent((percent) => {
-        if (percent - 20 <= 0) {
-          clearInterval(intv)
-        }
-        setProgress(percent - 20)
-        return percent - 20
-      })
-    }, 1000)
+    setTimeout(() => {
+      // Initially run `everySecondHook`
+      everySecondHook && everySecondHook(totalSeconds, totalSeconds)
+
+      const intv = setInterval(() => {
+        setRemainingSecond((second) => {
+          const next = second - 1
+
+          // Fire `everySecondHook` on every second
+          everySecondHook && everySecondHook(next, totalSeconds)
+
+          // If the timer ends, clear the timeout and fire `endHook`
+          if (next === 0) {
+            clearInterval(intv)
+
+            endHook && endHook()
+
+            setTimeout(() => {
+              animationEndHook && animationEndHook()
+            }, parseInt(getComputedStyle(circleRef.current as SVGElement).getPropertyValue('--animation-duration')))
+          }
+
+          return next
+        })
+      }, 1000)
+    }, delay)
   }, [])
+
+  // When `remainingSeconds` changes
+  // calculate percent and set progress
+  useEffect(() => {
+    const percentage = (remainingSeconds / totalSeconds) * 100
+
+    setProgress(percentage)
+  }, [remainingSeconds])
 
   return (
     <div className="component-beginning-progress">
       <svg height={radius * 2} width={radius * 2} className="progress-ring">
         <circle
+          ref={circleRef}
           stroke="url(#paint0_linear)"
           // stroke="black"
           fill="transparent"
@@ -93,10 +140,12 @@ const BeginningProgress: React.FC<BeginningProgressProps> = (props) => {
       </svg>
 
       <p className="message">
-        {remainingSecond > 0 ? remainingSecond + '초 후에 시작합니다.' : ''}
+        {remainingSeconds > 0
+          ? remainingSeconds + '초 후에 시작합니다.'
+          : '준비하세요!'}
       </p>
     </div>
   )
 }
 
-export default BeginningProgress
+export default RingProgress
