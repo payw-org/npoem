@@ -24,6 +24,27 @@ const examples: exType[] = [
     word: '아이돌',
     poem: ['아저씨', '이제 자리로 좀', '돌아가주세요 안보여요'],
   },
+  {
+    id: 3,
+    username: '최범수렁텅이',
+    word: '간장게장',
+    poem: ['간질간질', '장지기장지기지기', '게르만족', '장염'],
+  },
+  {
+    id: 4,
+    username: '인근주민',
+    word: '인근',
+    poem: [
+      '수비 안에는 밴첵밴첵밴 여잔 뿌려 페로몬 아웃핏은 매일마다 새로워',
+      '미녀처럼 부자는 괴로워',
+    ],
+  },
+  {
+    id: 5,
+    username: '가든리',
+    word: '정원',
+    poem: ['정력', '원천소'],
+  },
 ]
 
 const PoemList: React.FC<PoemListProps> = () => {
