@@ -6,9 +6,11 @@ type PoemItemProps = {
   poem: string[]
 }
 
-const PoemItem: React.FC<PoemItemProps> = ({ username, word, poem }) => {
+const PoemItem: React.FC<PoemItemProps> = (props) => {
+  const { username, word, poem } = props
+
   return (
-    <div className="component-poem-item">
+    <div className="poem-item" data-component="">
       <div>{username}</div>
       {word.split('').map((letter, index) => {
         return (
