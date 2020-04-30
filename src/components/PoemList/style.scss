@@ -31,11 +31,14 @@ $black: #1d1e1f;
 
   .poem-container {
     width: 512px;
-    margin-top: 50px;
+    margin: 50px 0;
 
     .title {
       @include custom-font(20px, $black, 500, 24px);
-      margin-bottom: 24px;
+      margin: {
+        bottom: 24px;
+        left: 2.5px;
+      }
     }
 
     .poem-item {
