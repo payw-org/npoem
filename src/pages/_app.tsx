@@ -7,6 +7,12 @@ import Head from 'next/head'
 import React from 'react'
 
 export default class MyApp extends App {
+  // componentDidMount() {
+  //   const app = document.getElementById('__next')
+
+  //   app && (app.id = 'npoem')
+  // }
+
   public render(): JSX.Element {
     const { Component, pageProps } = this.props
 
