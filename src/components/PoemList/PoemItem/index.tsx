@@ -11,16 +11,15 @@ const PoemItem: React.FC<PoemItemProps> = (props) => {
 
   return (
     <div className="poem-item" data-component="">
-      <div>{username}</div>
+      <div className="username">{username}</div>
       {word.split('').map((letter, index) => {
         return (
-          <div key={index}>
-            <div>{letter}</div>
-            <div>{poem[index]}</div>
+          <div key={index} className="poem">
+            <div className="letter">{letter}</div>
+            <div className="phrase">{poem[index]}</div>
           </div>
         )
       })}
-      <hr />
     </div>
   )
 }

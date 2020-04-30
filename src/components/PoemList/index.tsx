@@ -29,11 +29,12 @@ const examples: exType[] = [
 const PoemList: React.FC<PoemListProps> = () => {
   return (
     <div className="poem-list" data-component="">
-      <div>실시간 엔행시</div>
-      <hr />
-      {examples.map((example) => {
-        return <PoemItem key={example.id} {...example}></PoemItem>
-      })}
+      <div className="poem-container">
+        <div className="title">실시간 엔행시</div>
+        {examples.map((example) => {
+          return <PoemItem key={example.id} {...example}></PoemItem>
+        })}
+      </div>
     </div>
   )
 }
