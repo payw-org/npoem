@@ -1,15 +1,4 @@
-/* will be delete */
-$font-family: 'PAYW Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-$black: #1d1e1f;
-$emerald: #1dd0b0;
-$blue: #6486ff;
-$violet: #9a5cff;
-$pink: #ff59bd;
-$rose: #ff4a6b;
-$orange: #ffad61;
-
-/* end: will be delete */
+@use '@/styles/package' as *;
 
 /* temp font-mixin */
 @mixin custom-font(
@@ -32,11 +21,11 @@ $orange: #ffad61;
 
 .poem-item[data-component] {
   border-radius: 10px;
-  background-color: #fafafc;
+  background-color: var(--alt-white);
   padding: 22px 21px 27px 21px;
 
   .username {
-    @include custom-font(15px, $black, 500, 18px);
+    @include custom-font(15px, var(--alt-black), 500, 18px);
     margin-bottom: 31px;
   }
 
@@ -49,27 +38,27 @@ $orange: #ffad61;
     }
 
     &:nth-child(1) .letter {
-      color: $emerald;
+      color: var(--emerald);
     }
 
     &:nth-child(2) .letter {
-      color: $blue;
+      color: var(--blue);
     }
 
     &:nth-child(3) .letter {
-      color: $pink;
+      color: var(--violet);
     }
 
     &:nth-child(4) .letter {
-      color: $rose;
+      color: var(--pink);
     }
 
     &:nth-child(5) .letter {
-      color: $rose;
+      color: var(--rose);
     }
 
     &:nth-child(6) .letter {
-      color: $orange;
+      color: var(--orange);
     }
 
     .letter {
@@ -78,7 +67,7 @@ $orange: #ffad61;
     }
 
     .phrase {
-      @include custom-font(20px, $black, 500, 24px);
+      @include custom-font(20px, var(--alt-black), 500, 24px);
     }
   }
 }

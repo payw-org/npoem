@@ -43,7 +43,7 @@ const examples: exType[] = [
     id: 5,
     username: '가든리',
     word: '정원',
-    poem: ['정력', '원천소'],
+    poem: ['정보', '원천소'],
   },
 ]
 
