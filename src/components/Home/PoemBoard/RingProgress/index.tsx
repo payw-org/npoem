@@ -94,7 +94,7 @@ const RingProgress: React.FC<RingProgressProps> = (props) => {
   }, [remainingSeconds])
 
   return (
-    <div className="component-beginning-progress">
+    <div className="beginning-progress" data-component="">
       <svg height={radius * 2} width={radius * 2} className="progress-ring">
         <circle
           ref={circleRef}
