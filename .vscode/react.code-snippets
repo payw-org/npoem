@@ -30,5 +30,10 @@
       "",
       "export default Page"
     ]
+  },
+  "data-component attribute": {
+    "scope": "typescriptreact",
+    "prefix": "dc",
+    "body": "data-component=\"\""
   }
 }
