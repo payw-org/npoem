@@ -1,18 +1,11 @@
 @use '@/styles/package' as *;
 @use './fonts' as *;
+@use '../var/colors' as *;
 
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-size: 100%;
-
-  @media only screen and (max-width: 700px) {
-    font-size: 90%;
-  }
-
-  @media only screen and (min-width: 1400px) {
-    font-size: 110%;
-  }
 }
 
 body {
@@ -23,6 +16,8 @@ body {
   overflow-anchor: none;
   margin: 0;
   font-family: $font-family;
+  background-color: #fff;
+  color: var(--alt-black);
 }
 
 * {
