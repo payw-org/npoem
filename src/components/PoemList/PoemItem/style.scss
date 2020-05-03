@@ -1,37 +1,23 @@
 @use '@/styles/package' as *;
 
-/* temp font-mixin */
-@mixin custom-font(
-  $size: unset,
-  $color: unset,
-  $weight: unset,
-  $line-height: unset,
-  $style: normal,
-  $family: $font-family
-) {
-  font-size: $size;
-  color: $color;
-  font-weight: $weight;
-  line-height: $line-height;
-  font-style: $style;
-  font-family: $family;
-}
-
-/* end: temp font-mixin */
-
 .poem-item[data-component] {
   border-radius: 10px;
   background-color: var(--alt-white);
   padding: 22px 21px 27px 21px;
 
   .username {
-    @include custom-font(15px, var(--alt-black), 500, 18px);
+    font: {
+      size: 15px;
+      weight: 500;
+    }
+    line-height: 18px;
+    color: var(--alt-black);
     margin-bottom: 31px;
   }
 
   .poem {
-    margin-bottom: 23px;
     display: flex;
+    margin-bottom: 23px;
 
     &:last-child {
       margin-bottom: 0;
@@ -62,12 +48,21 @@
     }
 
     .letter {
-      @include custom-font(20px, inherit, 600, 24px);
+      font: {
+        size: 20px;
+        weight: 600;
+      }
+      line-height: 24px;
       margin-right: 23px;
     }
 
     .phrase {
-      @include custom-font(20px, var(--alt-black), 500, 24px);
+      font: {
+        size: 20px;
+        weight: 500;
+      }
+      line-height: 24px;
+      color: var(--alt-black);
     }
   }
 }

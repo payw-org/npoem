@@ -1,24 +1,5 @@
 @use '@/styles/package' as *;
 
-/* temp font-mixin */
-@mixin custom-font(
-  $size: unset,
-  $color: unset,
-  $weight: unset,
-  $line-height: unset,
-  $style: normal,
-  $family: $font-family
-) {
-  font-size: $size;
-  color: $color;
-  font-weight: $weight;
-  line-height: $line-height;
-  font-style: $style;
-  font-family: $family;
-}
-
-/* end: temp font-mixin */
-
 .poem-list[data-component] {
   display: flex;
   justify-content: center;
@@ -29,10 +10,15 @@
     margin: 50px 0;
 
     .title {
-      @include custom-font(20px, var(--alt-black), 500, 24px);
+      font: {
+        size: 20px;
+        weight: 500;
+      }
+      line-height: 24px;
+      color: var(--alt-black);
       margin: {
-        bottom: 24px;
         left: 2.5px;
+        bottom: 24px;
       }
     }
 

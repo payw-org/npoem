@@ -52,9 +52,9 @@ const PoemList: React.FC<PoemListProps> = () => {
     <div className="poem-list" data-component="">
       <div className="poem-container">
         <div className="title">실시간 엔행시</div>
-        {examples.map((example) => {
-          return <PoemItem key={example.id} {...example}></PoemItem>
-        })}
+        {examples.map((example) => (
+          <PoemItem key={example.id} {...example} />
+        ))}
       </div>
     </div>
   )
