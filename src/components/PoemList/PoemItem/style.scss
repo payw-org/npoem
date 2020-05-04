@@ -1,0 +1,68 @@
+@use '@/styles/package' as *;
+
+.poem-item[data-component] {
+  border-radius: 10px;
+  background-color: var(--alt-white);
+  padding: 22px 21px 27px 21px;
+
+  .username {
+    font: {
+      size: 15px;
+      weight: 500;
+    }
+    line-height: 18px;
+    color: var(--alt-black);
+    margin-bottom: 31px;
+  }
+
+  .poem {
+    display: flex;
+    margin-bottom: 23px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:nth-child(1) .letter {
+      color: var(--emerald);
+    }
+
+    &:nth-child(2) .letter {
+      color: var(--blue);
+    }
+
+    &:nth-child(3) .letter {
+      color: var(--violet);
+    }
+
+    &:nth-child(4) .letter {
+      color: var(--pink);
+    }
+
+    &:nth-child(5) .letter {
+      color: var(--rose);
+    }
+
+    &:nth-child(6) .letter {
+      color: var(--orange);
+    }
+
+    .letter {
+      font: {
+        size: 20px;
+        weight: 600;
+      }
+      line-height: 24px;
+      margin-right: 23px;
+    }
+
+    .phrase {
+      font: {
+        size: 20px;
+        weight: 500;
+      }
+      line-height: 24px;
+      color: var(--alt-black);
+    }
+  }
+}

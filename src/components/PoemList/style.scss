@@ -1,0 +1,33 @@
+@use '@/styles/package' as *;
+
+.poem-list[data-component] {
+  display: flex;
+  justify-content: center;
+  margin-left: 10%;
+
+  .poem-container {
+    width: 512px;
+    margin: 50px 0;
+
+    .title {
+      font: {
+        size: 20px;
+        weight: 500;
+      }
+      line-height: 24px;
+      color: var(--alt-black);
+      margin: {
+        left: 2.5px;
+        bottom: 24px;
+      }
+    }
+
+    .poem-item {
+      margin-bottom: 24px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
