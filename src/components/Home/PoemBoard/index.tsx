@@ -1,7 +1,9 @@
+import './style.scss'
+
 import { useEffect, useState } from 'react'
 
 import RingProgress from './RingProgress'
-import Timer from './Timer'
+import UserInputs from './UserInputs'
 
 type PoemBoardProps = {}
 
@@ -16,8 +18,15 @@ const PoemBoard: React.FC<PoemBoardProps> = () => {
 
   return (
     <div className="poem-board" data-component="">
-      <RingProgress />
-      <Timer isStopped={isStopped} />
+      <section className="section--poem">
+        <div className="user-inputs-wrapper">
+          <UserInputs />
+        </div>
+      </section>
+      <section className="section--timer">
+        <RingProgress />
+        {/* <Timer isStopped={isStopped} /> */}
+      </section>
     </div>
   )
 }

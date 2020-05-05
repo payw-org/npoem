@@ -1,0 +1,4 @@
+.user-inputs[data-component] {
+  position: relative;
+  height: calc(var(--poem-input-font-size) * var(--poem-input-line-height));
+}
