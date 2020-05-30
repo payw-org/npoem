@@ -49,5 +49,6 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-extra-semi': [0],
   },
 }
