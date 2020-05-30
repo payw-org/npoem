@@ -2,8 +2,6 @@ import './style.scss'
 
 import PoemItem from '@/components/PoemList/PoemItem'
 
-type PoemListProps = {}
-
 type exType = {
   id: number
   username: string
@@ -47,7 +45,7 @@ const examples: exType[] = [
   },
 ]
 
-const PoemList: React.FC<PoemListProps> = () => {
+const PoemList: React.FC = () => {
   return (
     <div className="poem-list" data-component="">
       <div className="poem-container">

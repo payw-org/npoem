@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 import RingProgress from './RingProgress'
 import Timer from './Timer'
 
-type PoemBoardProps = {}
-
-const PoemBoard: React.FC<PoemBoardProps> = () => {
+const PoemBoard: React.FC = () => {
   const [isStopped, setIsStopped] = useState(false)
 
   useEffect(() => {
