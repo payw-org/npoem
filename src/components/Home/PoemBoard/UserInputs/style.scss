@@ -1,4 +1,8 @@
+$easing: cubic-bezier(0.51, 0.17, 0.13, 1);
+$transition-time: 500ms;
+
 .user-inputs[data-component] {
   position: relative;
   height: calc(var(--poem-input-font-size) * var(--poem-input-line-height));
+  transition: transform $transition-time $easing;
 }
