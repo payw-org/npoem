@@ -20,26 +20,26 @@ type RingProgressProps = {
    * @param remainingSecond Currently remaining seconds
    * @param totalSeconds
    */
-  everySecondHook?: (remainingSecond: number, totalSeconds: number) => void
+  onEverySecond?: (remainingSecond: number, totalSeconds: number) => void
   /**
    * Fire when the remaining seconds is 0
    */
-  endHook?: () => void
+  onEnd?: () => void
   /**
    * Fire after the animation completely ends
    */
-  animationEndHook?: () => void
+  onAnimationEnd?: () => void
 }
 
 const RingProgress: React.FC<RingProgressProps> = (props) => {
   const {
-    stroke = 3,
-    radius = 125,
+    stroke = 5,
+    radius = 150,
     totalSeconds = 5,
     delay = 0,
-    everySecondHook,
-    endHook,
-    animationEndHook,
+    onEverySecond: everySecondHook,
+    onEnd: endHook,
+    onAnimationEnd: animationEndHook,
   } = props
   const normalizedRadius = radius - stroke * 2
   const circumference = normalizedRadius * 2 * Math.PI
