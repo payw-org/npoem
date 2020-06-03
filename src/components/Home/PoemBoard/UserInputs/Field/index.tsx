@@ -40,7 +40,7 @@ const Field: React.FC<FieldProps> = ({
 
   const style: CSSProperties = isReady
     ? {
-        transform: `translateX(${distance ** 2 * -5}px) translateY(${
+        transform: `translateX(${distance ** 2 * -2}px) translateY(${
           distance * 80 + additionalMargin + 'px'
         }) scale(${(100 - absDistance * 4) / 100})`,
         filter: `blur(${blurAmount}px)`,
