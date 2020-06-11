@@ -98,6 +98,7 @@ const Field: React.FC<FieldProps> = ({
           disabled={currentIndex !== index || !isReady}
           className="input"
           value={value}
+          maxLength={100}
           onChange={(e): void => {
             const value = e.target.value
             setValue(value)
