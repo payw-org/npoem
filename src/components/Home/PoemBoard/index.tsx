@@ -1,19 +1,56 @@
 import './style.scss'
 
+import { useEffect, useState } from 'react'
+
+import ApolloClient from 'apollo-boost'
 import RingProgress from './RingProgress'
 import Timer from './Timer'
 import UserInputs from './UserInputs'
-import { useState } from 'react'
+import { gql } from 'apollo-boost'
 
 type PoemBoardProps = unknown
 
+const uri = `https://api.npoem.xyz/graphql`
+
+const fetchTodayWord = async () => {
+  const client = new ApolloClient({
+    uri,
+  })
+  const {
+    data: {
+      todayWord: { word },
+    },
+  } = await client.query({
+    query: gql`
+      {
+        todayWord {
+          id
+          word {
+            id
+            text
+          }
+        }
+      }
+    `,
+  })
+
+  return word
+}
+
 const PoemBoard: React.FC<PoemBoardProps> = () => {
   // Today's word
-  const word = '가산디지털단지'
+  const [word, setWord] = useState(' ')
+  // const word = '가디단'
 
   const [isStopped, setIsStopped] = useState(false)
 
   const [appState, setAppState] = useState(0)
+
+  useEffect(() => {
+    fetchTodayWord().then(function (word) {
+      setWord(word.text)
+    })
+  }, [])
 
   return (
     <div className="poem-board" data-component="">
