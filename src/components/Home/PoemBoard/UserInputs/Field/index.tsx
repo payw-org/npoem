@@ -50,6 +50,46 @@ const Field: React.FC<FieldProps> = ({
         transform: `translateX(${distance * 2}rem)`,
       }
 
+  const fontColorPicker = (index: number) => {
+    switch (index % 7) {
+      case 0:
+        return 'var(--emerald)'
+
+      case 1:
+        return 'var(--blue)'
+
+      case 2:
+        return 'var(--violet)'
+
+      case 3:
+        return 'var(--pink)'
+
+      case 4:
+        return 'var(--rose)'
+
+      case 5:
+        return 'var(--orange)'
+
+      default:
+        break
+    }
+  }
+
+  const fontStyle: CSSProperties =
+    currentIndex > index
+      ? { color: fontColorPicker(index) }
+      : currentIndex == index && isReady
+      ? {
+          color: 'var(--alt-white)',
+          background: fontColorPicker(index),
+          borderRadius: '10px',
+          padding: '9px 14px 9px 14px',
+        }
+      : { color: 'var(--gray)' }
+
+  const textareaStyle: CSSProperties =
+    currentIndex == index && isReady ? { marginTop: '9px' } : {}
+
   const lastLineCount = useRef(1)
 
   function updateLineCount(value: string) {
@@ -88,11 +128,13 @@ const Field: React.FC<FieldProps> = ({
 
   return (
     <div className="field" data-component="" style={style}>
-      <div className="letter">{letter}</div>
-
+      <div style={fontStyle} className="letter">
+        {letter}
+      </div>
       <div className="input-container">
         <textarea className="input-shadow" ref={inputShadowRef} tabIndex={-1} />
         <textarea
+          style={textareaStyle}
           spellCheck="false"
           ref={inputRef}
           disabled={currentIndex !== index || !isReady}
