@@ -10,6 +10,7 @@ type PoemListProps = unknown
 type PoemType = {
   id: number
   username: string
+  time: number
   word: string
   poem: string[]
 }
@@ -22,6 +23,7 @@ const fetchPoemList = async (): Promise<PoemType[]> => {
   type OriginPoemType = {
     id: number
     content: string
+    timeSpent: number
     word: {
       text: string
     }
@@ -34,6 +36,7 @@ const fetchPoemList = async (): Promise<PoemType[]> => {
       {
         poems {
           id
+          timeSpent
           content
           word {
             text
@@ -46,6 +49,7 @@ const fetchPoemList = async (): Promise<PoemType[]> => {
   const poemList: PoemType[] = poems.map((poem: OriginPoemType) => ({
     id: poem.id,
     username: '김정빈지노',
+    time: poem.timeSpent,
     word: poem.word.text,
     poem: poem.content.split('@'),
   }))
