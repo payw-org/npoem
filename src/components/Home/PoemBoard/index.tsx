@@ -6,11 +6,12 @@ import ApolloClient from 'apollo-boost'
 import RingProgress from './RingProgress'
 import Timer from './Timer'
 import UserInputs from './UserInputs'
+import apiUrl from '@/modules/api-url'
 import { gql } from 'apollo-boost'
 
 type PoemBoardProps = unknown
 
-const uri = `https://api.npoem.xyz/graphql`
+const uri = apiUrl.graphql
 
 const fetchTodayWord = async () => {
   const client = new ApolloClient({
