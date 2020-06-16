@@ -75,17 +75,24 @@ const Field: React.FC<FieldProps> = ({
     }
   }
 
+  const transitionStyle = {
+    transition: 'all 300ms ease',
+  }
+
   const fontStyle: CSSProperties =
     currentIndex > index
-      ? { color: fontColorPicker(index) }
+      ? { color: fontColorPicker(index), ...transitionStyle }
       : currentIndex == index && isReady
       ? {
           color: 'var(--alt-white)',
           background: fontColorPicker(index),
           borderRadius: '10px',
           padding: '9px 14px 9px 14px',
+          marginTop: '-9px',
+          marginLeft: '-14px',
+          ...transitionStyle,
         }
-      : { color: 'var(--gray)' }
+      : { color: 'var(--alt-black)', ...transitionStyle }
 
   const textareaStyle: CSSProperties =
     currentIndex == index && isReady ? { marginTop: '9px' } : {}
@@ -134,7 +141,7 @@ const Field: React.FC<FieldProps> = ({
       <div className="input-container">
         <textarea className="input-shadow" ref={inputShadowRef} tabIndex={-1} />
         <textarea
-          style={textareaStyle}
+          // style={textareaStyle}
           spellCheck="false"
           ref={inputRef}
           disabled={currentIndex !== index || !isReady}
