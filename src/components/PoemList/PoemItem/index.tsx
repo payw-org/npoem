@@ -12,8 +12,12 @@ const PoemItem: React.FC<PoemItemProps> = (props) => {
 
   return (
     <div className="poem-item" data-component="">
-      <div className="username">
-        {username} {time}
+      <div className="user-info">
+        <div className="username">{username}</div>
+        <div className="time-wrapper">
+          <i className="f7-icons clock-icon">clock</i>
+          <div className="time">{time}초 걸림</div>
+        </div>
       </div>
       {word.split('').map((letter, index) => {
         return (
