@@ -2,7 +2,7 @@ import './style.scss'
 
 import PoemItem from '@/components/PoemList/PoemItem'
 
-type PoemListProps = {}
+type PoemListProps = unknown
 
 type exType = {
   id: number

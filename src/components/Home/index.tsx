@@ -2,7 +2,7 @@ import './style.scss'
 
 import PoemBoard from './PoemBoard'
 
-type MainProps = {}
+type MainProps = unknown
 
 const Main: React.FC<MainProps> = () => {
   return (
