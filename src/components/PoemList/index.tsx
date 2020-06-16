@@ -4,6 +4,8 @@ import ApolloClient, { gql } from 'apollo-boost'
 import { useEffect, useState } from 'react'
 import PoemItem from '@/components/PoemList/PoemItem'
 
+type PoemListProps = unknown
+
 type PoemType = {
   id: number
   username: string

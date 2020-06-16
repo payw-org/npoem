@@ -1,0 +1,25 @@
+@use '@/styles/package' as *;
+
+.poem-board[data-component] {
+  --poem-input-font-size: 35px;
+  --poem-input-line-height: 1.2;
+
+  max-width: 1400px;
+  height: 100vh;
+  overflow: hidden;
+
+  @include center(row);
+
+  padding: 50px 100px;
+  padding-left: 180px;
+  margin: auto;
+
+  .section--poem {
+    flex: 1;
+  }
+
+  .section--timer {
+    @include center;
+    width: 300px;
+  }
+}

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 
 type TimerProps = {
   isStopped?: boolean
+  onEnd?: (elapsedTime: number) => void
 }
 
 const Timer: React.FC<TimerProps> = (props) => {
@@ -22,6 +23,7 @@ const Timer: React.FC<TimerProps> = (props) => {
   useEffect(() => {
     if (isStopped === true) {
       clearInterval(intv.current)
+      props.onEnd && props.onEnd(elapsedTime)
     }
   }, [isStopped])
 
@@ -38,7 +40,7 @@ const Timer: React.FC<TimerProps> = (props) => {
         />
       </div>
       <span className="time-display">
-        <span className="time">{(elapsedTime / 1000).toFixed(2)}</span>s
+        <span className="time">{(elapsedTime / 1000).toFixed(1)}s</span>
       </span>
     </div>
   )

@@ -1,0 +1,52 @@
+$easing: cubic-bezier(0.51, 0.17, 0.13, 1);
+$transition-time: 500ms;
+
+.field[data-component] {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform $transition-time $easing,
+    filter $transition-time $easing, opacity $transition-time $easing;
+  transform-origin: 0 50%;
+
+  .letter {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: var(--poem-input-line-height);
+  }
+
+  .input-container {
+    position: relative;
+    margin-left: 30px;
+
+    .input,
+    .input-shadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: var(--poem-input-line-height);
+      font-size: 35px;
+      font-weight: 500;
+      border: none;
+      width: calc(100vw - 550px);
+      max-width: 850px;
+      height: calc(var(--poem-input-font-size) * var(--poem-input-line-height));
+      resize: none;
+
+      &[disabled] {
+        background: none;
+        color: inherit;
+        user-select: none;
+        pointer-events: none;
+      }
+    }
+
+    // Hide input shadow
+    .input-shadow {
+      visibility: hidden;
+      user-select: none;
+    }
+  }
+}
