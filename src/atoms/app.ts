@@ -10,3 +10,8 @@ export const gameStepState = atom({
   key: 'gameStepState',
   default: GameStep.READY,
 })
+
+export const poemInputsState = atom<string[]>({
+  key: 'poemInputsState',
+  default: [],
+})

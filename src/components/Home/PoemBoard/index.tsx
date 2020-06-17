@@ -1,20 +1,16 @@
 import './style.scss'
 
 import { GameStep, gameStepState } from '@/atoms/app'
-import { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useEffect, useRef, useState } from 'react'
 
-import ApolloClient from 'apollo-boost'
 import RingProgress from './RingProgress'
 import Timer from './Timer'
 import UserInputs from './UserInputs'
-import { gql } from 'apollo-boost'
+import { useRecoilState } from 'recoil'
 
 type PoemBoardProps = {
   word: string
 }
-
-const uri = `https://api.npoem.xyz/graphql`
 
 const PoemBoard: React.FC<PoemBoardProps> = ({ word }) => {
   const [isStopped, setIsStopped] = useState(false)
@@ -26,8 +22,12 @@ const PoemBoard: React.FC<PoemBoardProps> = ({ word }) => {
 
     if (gameStep === GameStep.DONE) {
       setIsStopped(true)
+
+      authorInput.current && authorInput.current.focus()
     }
   }, [gameStep])
+
+  const authorInput = useRef<HTMLInputElement>(null)
 
   return (
     <div className="poem-board" data-component="">
@@ -53,8 +53,22 @@ const PoemBoard: React.FC<PoemBoardProps> = ({ word }) => {
 
       {gameStep === GameStep.DONE && (
         <section className="section--submit">
-          <input type="text" className="name" placeholder="작가명" />
-          <button className="btn">완료</button>
+          <div className="input-container">
+            <input
+              ref={authorInput}
+              type="text"
+              className="name"
+              placeholder="작가명"
+            />
+            <button
+              className="btn"
+              onClick={() => {
+                alert('제출 완료')
+              }}
+            >
+              완료
+            </button>
+          </div>
         </section>
       )}
     </div>

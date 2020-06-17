@@ -1,10 +1,10 @@
 import './style.scss'
 
-import { GameStep, gameStepState } from '@/atoms/app'
+import { GameStep, gameStepState, poemInputsState } from '@/atoms/app'
 import { useEffect, useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 import Field from './Field'
-import { useRecoilValue } from 'recoil'
 
 function getInputElmOfIndex(index: number): HTMLInputElement {
   const fields = document.querySelectorAll('.field[data-component]')
@@ -19,7 +19,11 @@ type UserInputsProps = {
 const UserInputs: React.FC<UserInputsProps> = ({ word }) => {
   const gameStep = useRecoilValue(gameStepState)
   const splittedWord = word.split('')
-  const [inputs, setInputs] = useState(Array<string>(word.length))
+  const [poemInputs, setPoemInputs] = useRecoilState(poemInputsState)
+
+  useEffect(() => {
+    setPoemInputs(Array<string>(word.length))
+  }, [])
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -56,10 +60,10 @@ const UserInputs: React.FC<UserInputsProps> = ({ word }) => {
           additionalMargin={additionalMargins[i]}
           setAdditionalMargins={setAdditionalMargins}
           setInput={(value): void => {
-            const newInputs = [...inputs]
+            const newInputs = [...poemInputs]
             newInputs[i] = value
 
-            setInputs(newInputs)
+            setPoemInputs(newInputs)
           }}
           totalLength={splittedWord.length}
           index={i}
