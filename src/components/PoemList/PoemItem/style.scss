@@ -3,7 +3,7 @@
 .poem-item[data-component] {
   border-radius: 10px;
   background-color: var(--silver);
-  padding: 22px 21px 27px 21px;
+  padding: 22px 21px 17px 21px;
 
   .user-info {
     display: flex;
@@ -45,7 +45,7 @@
     margin-bottom: 23px;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 27px;
     }
 
     &:nth-child(1) .letter {
@@ -88,6 +88,29 @@
       }
       line-height: 24px;
       color: var(--alt-black);
+    }
+  }
+
+  .thumbsup-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 59px;
+    height: 31px;
+    background-color: var(--alt-white);
+    border: 1px solid var(--rose);
+    border-radius: 10px;
+    color: var(--rose);
+    cursor: pointer;
+    margin: 0 auto;
+
+    .thumbsup-icon {
+      font-size: 18px;
+      margin-right: 4px;
+    }
+
+    .count {
+      font-size: 15px;
     }
   }
 }
