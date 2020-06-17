@@ -18,6 +18,10 @@ const Timer: React.FC<TimerProps> = (props) => {
         return time + 10
       })
     }, 10)
+
+    return () => {
+      clearInterval(intv.current)
+    }
   }, [])
 
   useEffect(() => {

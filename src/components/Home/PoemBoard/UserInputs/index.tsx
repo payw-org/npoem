@@ -1,8 +1,10 @@
 import './style.scss'
 
+import { GameStep, gameStepState } from '@/atoms/app'
 import { useEffect, useState } from 'react'
 
 import Field from './Field'
+import { useRecoilValue } from 'recoil'
 
 function getInputElmOfIndex(index: number): HTMLInputElement {
   const fields = document.querySelectorAll('.field[data-component]')
@@ -12,10 +14,10 @@ function getInputElmOfIndex(index: number): HTMLInputElement {
 
 type UserInputsProps = {
   word: string
-  isReady: boolean
 }
 
-const UserInputs: React.FC<UserInputsProps> = ({ word, isReady }) => {
+const UserInputs: React.FC<UserInputsProps> = ({ word }) => {
+  const gameStep = useRecoilValue(gameStepState)
   const splittedWord = word.split('')
   const [inputs, setInputs] = useState(Array<string>(word.length))
 
@@ -31,10 +33,10 @@ const UserInputs: React.FC<UserInputsProps> = ({ word, isReady }) => {
   }, [])
 
   useEffect(() => {
-    if (isReady) {
+    if (gameStep === GameStep.PLAYING) {
       ;(document.querySelector('.field .input') as HTMLInputElement).focus()
     }
-  }, [isReady])
+  }, [gameStep])
 
   return (
     <div
@@ -48,7 +50,7 @@ const UserInputs: React.FC<UserInputsProps> = ({ word, isReady }) => {
     >
       {splittedWord.map((letter, i) => (
         <Field
-          isReady={isReady}
+          isReady={gameStep >= GameStep.PLAYING}
           key={i}
           letter={letter}
           additionalMargin={additionalMargins[i]}
@@ -59,6 +61,7 @@ const UserInputs: React.FC<UserInputsProps> = ({ word, isReady }) => {
 
             setInputs(newInputs)
           }}
+          totalLength={splittedWord.length}
           index={i}
           currentIndex={currentIndex}
           next={(): void => {

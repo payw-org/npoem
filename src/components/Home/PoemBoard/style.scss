@@ -22,4 +22,34 @@
     @include center;
     width: 300px;
   }
+
+  .section--submit {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .name,
+    .btn {
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      height: 36px;
+      padding: 0 20px;
+      border-radius: 9999px;
+    }
+
+    .name {
+      background-color: var(--silver);
+      margin-right: 16px;
+    }
+
+    .btn {
+      background-color: var(--alt-black);
+      color: var(--alt-white);
+    }
+  }
 }

@@ -2,14 +2,16 @@ import './style.scss'
 
 import PoemBoard from './PoemBoard'
 
-type MainProps = unknown
+export type HomeProps = {
+  word: string
+}
 
-const Main: React.FC<MainProps> = () => {
+const Home: React.FC<HomeProps> = ({ word }) => {
   return (
     <main className="home" data-component="">
-      <PoemBoard />
+      <PoemBoard word={word} />
     </main>
   )
 }
 
-export default Main
+export default Home

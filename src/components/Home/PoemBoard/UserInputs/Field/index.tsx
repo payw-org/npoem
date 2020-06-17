@@ -8,10 +8,14 @@ import {
   useRef,
   useState,
 } from 'react'
+import { GameStep, gameStepState } from '@/atoms/app'
+
+import { useSetRecoilState } from 'recoil'
 
 type FieldProps = {
   letter: string
   setInput: (value: string) => void
+  totalLength: number
   index: number
   currentIndex: number
   next: () => void
@@ -23,6 +27,7 @@ type FieldProps = {
 const Field: React.FC<FieldProps> = ({
   letter,
   setInput,
+  totalLength,
   index,
   currentIndex,
   next,
@@ -30,6 +35,8 @@ const Field: React.FC<FieldProps> = ({
   additionalMargin = 0,
   setAdditionalMargins,
 }) => {
+  const setGameStep = useSetRecoilState(gameStepState)
+
   const [value, setValue] = useState('')
   const distance = index - currentIndex
   const absDistance = Math.abs(distance)
@@ -157,7 +164,13 @@ const Field: React.FC<FieldProps> = ({
           onKeyDown={(e): void => {
             if (e.key === 'Enter') {
               e.preventDefault()
-              next()
+
+              if (currentIndex === totalLength - 1) {
+                // End the typing
+                setGameStep(GameStep.DONE)
+              } else {
+                next()
+              }
             }
           }}
           onKeyUp={(e): void => {
