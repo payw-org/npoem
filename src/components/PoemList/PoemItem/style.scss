@@ -2,17 +2,42 @@
 
 .poem-item[data-component] {
   border-radius: 10px;
-  background-color: var(--alt-white);
+  background-color: var(--silver);
   padding: 22px 21px 27px 21px;
 
-  .username {
-    font: {
-      size: 15px;
-      weight: 500;
-    }
-    line-height: 18px;
-    color: var(--alt-black);
+  .user-info {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 31px;
+
+    .username {
+      font: {
+        size: 15px;
+        weight: 500;
+      }
+      line-height: 18px;
+      color: var(--alt-black);
+    }
+
+    .time-wrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 2px;
+
+      .clock-icon {
+        font-size: 14px;
+        margin-right: 6px;
+      }
+
+      .time {
+        font: {
+          size: 12px;
+          weight: normal;
+        }
+        line-height: 14px;
+        color: var(--alt-black);
+      }
+    }
   }
 
   .poem {

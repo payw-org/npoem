@@ -1,6 +1,8 @@
 import './style.scss'
 
+import { GameStep, gameStepState, poemInputsState } from '@/atoms/app'
 import { useEffect, useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 import Field from './Field'
 
@@ -12,12 +14,16 @@ function getInputElmOfIndex(index: number): HTMLInputElement {
 
 type UserInputsProps = {
   word: string
-  isReady: boolean
 }
 
-const UserInputs: React.FC<UserInputsProps> = ({ word, isReady }) => {
+const UserInputs: React.FC<UserInputsProps> = ({ word }) => {
+  const gameStep = useRecoilValue(gameStepState)
   const splittedWord = word.split('')
-  const [inputs, setInputs] = useState(Array<string>(word.length))
+  const [poemInputs, setPoemInputs] = useRecoilState(poemInputsState)
+
+  useEffect(() => {
+    setPoemInputs(Array<string>(word.length))
+  }, [])
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -31,10 +37,10 @@ const UserInputs: React.FC<UserInputsProps> = ({ word, isReady }) => {
   }, [])
 
   useEffect(() => {
-    if (isReady) {
+    if (gameStep === GameStep.PLAYING) {
       ;(document.querySelector('.field .input') as HTMLInputElement).focus()
     }
-  }, [isReady])
+  }, [gameStep])
 
   return (
     <div
@@ -48,17 +54,18 @@ const UserInputs: React.FC<UserInputsProps> = ({ word, isReady }) => {
     >
       {splittedWord.map((letter, i) => (
         <Field
-          isReady={isReady}
+          isReady={gameStep >= GameStep.PLAYING}
           key={i}
           letter={letter}
           additionalMargin={additionalMargins[i]}
           setAdditionalMargins={setAdditionalMargins}
           setInput={(value): void => {
-            const newInputs = [...inputs]
+            const newInputs = [...poemInputs]
             newInputs[i] = value
 
-            setInputs(newInputs)
+            setPoemInputs(newInputs)
           }}
+          totalLength={splittedWord.length}
           index={i}
           currentIndex={currentIndex}
           next={(): void => {

@@ -25,9 +25,14 @@ body {
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  font-family: inherit;
 }
 
 input,
 textarea {
   font-family: inherit;
+}
+
+button {
+  cursor: pointer;
 }

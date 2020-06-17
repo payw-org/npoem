@@ -8,10 +8,14 @@ import {
   useRef,
   useState,
 } from 'react'
+import { GameStep, gameStepState } from '@/atoms/app'
+
+import { useSetRecoilState } from 'recoil'
 
 type FieldProps = {
   letter: string
   setInput: (value: string) => void
+  totalLength: number
   index: number
   currentIndex: number
   next: () => void
@@ -23,6 +27,7 @@ type FieldProps = {
 const Field: React.FC<FieldProps> = ({
   letter,
   setInput,
+  totalLength,
   index,
   currentIndex,
   next,
@@ -30,6 +35,8 @@ const Field: React.FC<FieldProps> = ({
   additionalMargin = 0,
   setAdditionalMargins,
 }) => {
+  const setGameStep = useSetRecoilState(gameStepState)
+
   const [value, setValue] = useState('')
   const distance = index - currentIndex
   const absDistance = Math.abs(distance)
@@ -75,17 +82,24 @@ const Field: React.FC<FieldProps> = ({
     }
   }
 
+  const transitionStyle = {
+    transition: 'all 300ms ease',
+  }
+
   const fontStyle: CSSProperties =
     currentIndex > index
-      ? { color: fontColorPicker(index) }
+      ? { color: fontColorPicker(index), ...transitionStyle }
       : currentIndex == index && isReady
       ? {
           color: 'var(--alt-white)',
           background: fontColorPicker(index),
           borderRadius: '10px',
           padding: '9px 14px 9px 14px',
+          marginTop: '-9px',
+          marginLeft: '-14px',
+          ...transitionStyle,
         }
-      : { color: 'var(--gray)' }
+      : { color: 'var(--alt-black)', ...transitionStyle }
 
   const textareaStyle: CSSProperties =
     currentIndex == index && isReady ? { marginTop: '9px' } : {}
@@ -134,7 +148,7 @@ const Field: React.FC<FieldProps> = ({
       <div className="input-container">
         <textarea className="input-shadow" ref={inputShadowRef} tabIndex={-1} />
         <textarea
-          style={textareaStyle}
+          // style={textareaStyle}
           spellCheck="false"
           ref={inputRef}
           disabled={currentIndex !== index || !isReady}
@@ -150,7 +164,13 @@ const Field: React.FC<FieldProps> = ({
           onKeyDown={(e): void => {
             if (e.key === 'Enter') {
               e.preventDefault()
-              next()
+
+              if (currentIndex === totalLength - 1) {
+                // End the typing
+                setGameStep(GameStep.DONE)
+              } else {
+                next()
+              }
             }
           }}
           onKeyUp={(e): void => {

@@ -5,6 +5,7 @@ import '@/styles/global/globalstyle.scss'
 import App from 'next/app'
 import Head from 'next/head'
 import React from 'react'
+import { RecoilRoot } from 'recoil'
 
 export default class MyApp extends App {
   // componentDidMount() {
@@ -17,7 +18,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <>
+      <RecoilRoot>
         <Head>
           <meta
             name="viewport"
@@ -26,7 +27,7 @@ export default class MyApp extends App {
           <title>N poem</title>
         </Head>
         <Component {...pageProps} />
-      </>
+      </RecoilRoot>
     )
   }
 }
