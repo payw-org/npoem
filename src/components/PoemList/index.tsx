@@ -1,59 +1,78 @@
 import './style.scss'
 
+import ApolloClient, { gql } from 'apollo-boost'
+import { useEffect, useState } from 'react'
 import PoemItem from '@/components/PoemList/PoemItem'
+import apiUrl from '@/modules/api-url'
 
 type PoemListProps = unknown
 
-type exType = {
+type PoemType = {
   id: number
   username: string
+  time: number
   word: string
   poem: string[]
 }
 
-const examples: exType[] = [
-  {
-    id: 1,
+const uri = apiUrl.graphql
+
+const fetchPoemList = async (): Promise<PoemType[]> => {
+  const client = new ApolloClient({ uri })
+
+  type OriginPoemType = {
+    id: number
+    content: string
+    timeSpent: number
+    word: {
+      text: string
+    }
+  }
+
+  const {
+    data: { poems },
+  } = await client.query({
+    query: gql`
+      {
+        poems {
+          id
+          timeSpent
+          content
+          word {
+            text
+          }
+        }
+      }
+    `,
+  })
+
+  const poemList: PoemType[] = poems.map((poem: OriginPoemType) => ({
+    id: poem.id,
     username: '김정빈지노',
-    word: '홍길동',
-    poem: ['홍대', '길바닥에서', '동동주 한잔'],
-  },
-  {
-    id: 2,
-    username: '장해민초의난',
-    word: '아이돌',
-    poem: ['아저씨', '이제 자리로 좀', '돌아가주세요 안보여요'],
-  },
-  {
-    id: 3,
-    username: '최범수렁텅이',
-    word: '간장게장',
-    poem: ['간질간질', '장지기장지기지기', '게르만족', '장염'],
-  },
-  {
-    id: 4,
-    username: '인근주민',
-    word: '인근',
-    poem: [
-      '수비 안에는 밴첵밴첵밴 여잔 뿌려 페로몬 아웃핏은 매일마다 새로워',
-      '미녀처럼 부자는 괴로워',
-    ],
-  },
-  {
-    id: 5,
-    username: '가든리',
-    word: '정원',
-    poem: ['정보', '원천소'],
-  },
-]
+    time: ~~poem.timeSpent,
+    word: poem.word.text,
+    poem: poem.content.split('@'),
+  }))
+
+  return poemList
+}
 
 const PoemList: React.FC<PoemListProps> = () => {
+  const [poemList, setPoemList] = useState<PoemType[]>([])
+
+  useEffect(() => {
+    const init = async () => {
+      setPoemList(await fetchPoemList())
+    }
+    init()
+  }, [])
+
   return (
     <div className="poem-list" data-component="">
       <div className="poem-container">
         <div className="title">실시간 엔행시</div>
-        {examples.map((example) => (
-          <PoemItem key={example.id} {...example} />
+        {poemList.map((poem: PoemType) => (
+          <PoemItem key={poem.id} {...poem} />
         ))}
       </div>
     </div>
