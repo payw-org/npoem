@@ -1,3 +1,5 @@
+@use '@/styles/package' as *;
+
 .beginning-progress[data-component] {
   display: inline-block;
   position: relative;
@@ -21,5 +23,9 @@
     white-space: nowrap;
     font-size: 20px;
     font-weight: 500;
+
+    @include smaller-than(900px) {
+      font-size: 15px;
+    }
   }
 }

@@ -1,12 +1,17 @@
 import './style.scss'
 
-import { GameStep, gameStepState } from '@/atoms/app'
+import {
+  GameStep,
+  gameStepState,
+  poemInputsGap,
+  ringProgressRadius,
+} from '@/atoms/app'
 import { useEffect, useRef, useState } from 'react'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import RingProgress from './RingProgress'
 import Timer from './Timer'
 import UserInputs from './UserInputs'
-import { useRecoilState } from 'recoil'
 
 type PoemBoardProps = {
   word: string
@@ -29,6 +34,33 @@ const PoemBoard: React.FC<PoemBoardProps> = ({ word }) => {
 
   const authorInput = useRef<HTMLInputElement>(null)
 
+  const setGap = useSetRecoilState(poemInputsGap)
+  const [radius, setRadius] = useRecoilState(ringProgressRadius)
+
+  useEffect(() => {
+    function setProperGap() {
+      if (window.innerWidth < 900) {
+        setGap(55)
+        setRadius(100)
+      } else {
+        setGap(80)
+        setRadius(150)
+      }
+    }
+
+    setProperGap()
+
+    const windowResizeHandler = () => {
+      setProperGap()
+    }
+
+    window.addEventListener('resize', windowResizeHandler)
+
+    return () => {
+      window.removeEventListener('resize', windowResizeHandler)
+    }
+  }, [])
+
   return (
     <div className="poem-board" data-component="">
       <section className="section--poem">
@@ -40,12 +72,13 @@ const PoemBoard: React.FC<PoemBoardProps> = ({ word }) => {
       <section className="section--timer">
         {gameStep === GameStep.READY && (
           <RingProgress
-            totalSeconds={1}
+            totalSeconds={5}
             onAnimationEnd={() => {
               setTimeout(() => {
                 setGameStep(GameStep.PLAYING)
               }, 500)
             }}
+            radius={radius}
           />
         )}
         {gameStep >= GameStep.PLAYING && <Timer isStopped={isStopped} />}
