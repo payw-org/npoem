@@ -27,6 +27,9 @@ const fetchPoemList = async (): Promise<PoemType[]> => {
     word: {
       text: string
     }
+    user: {
+      nickname: string
+    }
   }
 
   const {
@@ -41,6 +44,9 @@ const fetchPoemList = async (): Promise<PoemType[]> => {
           word {
             text
           }
+          user {
+            nickname
+          }
         }
       }
     `,
@@ -48,7 +54,7 @@ const fetchPoemList = async (): Promise<PoemType[]> => {
 
   const poemList: PoemType[] = poems.map((poem: OriginPoemType) => ({
     id: poem.id,
-    username: '김정빈지노',
+    username: poem.user.nickname,
     time: ~~poem.timeSpent,
     word: poem.word.text,
     poem: poem.content.split('@'),
