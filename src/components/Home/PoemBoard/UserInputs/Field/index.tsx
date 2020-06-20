@@ -165,6 +165,12 @@ const Field: React.FC<FieldProps> = ({
               e.preventDefault()
             }
           }}
+          onKeyPress={(e): void => {
+            console.log(e.key)
+            if (e.key === '@') {
+              e.preventDefault()
+            }
+          }}
         />
       </div>
     </div>
