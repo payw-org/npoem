@@ -8,9 +8,8 @@ import {
   useRef,
   useState,
 } from 'react'
-import { GameStep, gameStepState } from '@/atoms/app'
-
-import { useSetRecoilState } from 'recoil'
+import { GameStep, gameStepState, poemInputsGap } from '@/atoms/app'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 type FieldProps = {
   letter: string
@@ -45,10 +44,12 @@ const Field: React.FC<FieldProps> = ({
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const inputShadowRef = useRef<HTMLTextAreaElement>(null)
 
+  const gap = useRecoilValue(poemInputsGap)
+
   const style: CSSProperties = isReady
     ? {
         transform: `translateX(${distance ** 2 * -2}px) translateY(${
-          distance * 80 + additionalMargin + 'px'
+          distance * gap + additionalMargin + 'px'
         }) scale(${(100 - absDistance * 4) / 100})`,
         filter: `blur(${blurAmount}px)`,
         opacity: (100 - absDistance * 4) / 100,
@@ -82,7 +83,7 @@ const Field: React.FC<FieldProps> = ({
     }
   }
 
-  const transitionStyle = {
+  const transitionStyle: CSSProperties = {
     transition: 'all 300ms ease',
   }
 
@@ -137,6 +138,10 @@ const Field: React.FC<FieldProps> = ({
 
     if (inputRef.current) {
       resizeObserver.observe(inputRef.current)
+    }
+
+    return () => {
+      resizeObserver.disconnect()
     }
   }, [])
 

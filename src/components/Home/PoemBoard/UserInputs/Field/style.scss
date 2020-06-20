@@ -1,3 +1,5 @@
+@use '@/styles/package' as *;
+
 $easing: cubic-bezier(0.51, 0.17, 0.13, 1);
 $transition-time: 500ms;
 
@@ -15,11 +17,19 @@ $transition-time: 500ms;
     font-size: 35px;
     font-weight: 700;
     line-height: var(--poem-input-line-height);
+
+    @include smaller-than(900px) {
+      font-size: 25px;
+    }
   }
 
   .input-container {
     position: relative;
     margin-left: 30px;
+
+    @include smaller-than(900px) {
+      margin-left: 20px;
+    }
 
     .input,
     .input-shadow {
@@ -40,6 +50,11 @@ $transition-time: 500ms;
         color: inherit;
         user-select: none;
         pointer-events: none;
+      }
+
+      @include smaller-than(900px) {
+        width: calc(100vw - 160px);
+        font-size: 25px;
       }
     }
 

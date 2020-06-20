@@ -11,8 +11,13 @@
   @include center(row);
 
   padding: 50px 100px;
-  padding-left: 180px;
+  padding-left: 150px;
   margin: auto;
+
+  @include smaller-than(900px) {
+    padding: 0;
+    padding-left: 50px;
+  }
 
   .section--poem {
     flex: 1;
@@ -21,6 +26,14 @@
   .section--timer {
     @include center;
     width: 300px;
+
+    @include smaller-than(900px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px;
+    }
   }
 
   .section--submit {

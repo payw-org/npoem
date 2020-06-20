@@ -98,6 +98,7 @@ const RingProgress: React.FC<RingProgressProps> = (props) => {
       <svg height={radius * 2} width={radius * 2} className="progress-ring">
         <circle
           ref={circleRef}
+          className="ring-progress-circle"
           stroke="url(#paint0_linear)"
           // stroke="black"
           fill="transparent"
