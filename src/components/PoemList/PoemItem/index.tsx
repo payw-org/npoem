@@ -27,6 +27,10 @@ const PoemItem: React.FC<PoemItemProps> = (props) => {
           </div>
         )
       })}
+      <div className="thumbsup-wrapper">
+        <i className="f7-icons thumbsup-icon">hand_thumbsup</i>
+        <div className="count">10</div>
+      </div>
     </div>
   )
 }
