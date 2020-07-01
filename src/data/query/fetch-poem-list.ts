@@ -1,12 +1,6 @@
-import './style.scss'
-
 import ApolloClient, { gql } from 'apollo-boost'
-import { useEffect, useState } from 'react'
 
-import PoemItem from '@/components/PoemList/PoemItem'
 import apiUrl from '@/modules/api-url'
-
-type PoemListProps = unknown
 
 type PoemType = {
   id: number
@@ -17,7 +11,6 @@ type PoemType = {
 }
 
 const uri = apiUrl.graphql
-
 const fetchPoemList = async (): Promise<PoemType[]> => {
   const client = new ApolloClient({ uri })
 
@@ -58,26 +51,4 @@ const fetchPoemList = async (): Promise<PoemType[]> => {
   return poemList
 }
 
-const PoemList: React.FC<PoemListProps> = () => {
-  const [poemList, setPoemList] = useState<PoemType[]>([])
-
-  useEffect(() => {
-    const init = async () => {
-      setPoemList(await fetchPoemList())
-    }
-    init()
-  }, [])
-
-  return (
-    <div className="poem-list" data-component="">
-      <div className="poem-container">
-        <div className="title">실시간 엔행시</div>
-        {poemList.map((poem: PoemType) => (
-          <PoemItem key={poem.id} {...poem} />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-export default PoemList
+export default fetchPoemList

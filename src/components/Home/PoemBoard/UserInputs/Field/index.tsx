@@ -58,7 +58,7 @@ const Field: React.FC<FieldProps> = ({
       }
 
   const fontColorPicker = (index: number) => {
-    switch (index % 7) {
+    switch (index % 6) {
       case 0:
         return 'var(--emerald)'
 
@@ -101,8 +101,8 @@ const Field: React.FC<FieldProps> = ({
         }
       : { color: 'var(--alt-black)', ...transitionStyle }
 
-  const textareaStyle: CSSProperties =
-    currentIndex == index && isReady ? { marginTop: '9px' } : {}
+  // const textareaStyle: CSSProperties =
+  // currentIndex == index && isReady ? { marginTop: '9px' } : {}
 
   const lastLineCount = useRef(1)
 

@@ -1,45 +1,35 @@
-import ApolloClient, { gql } from 'apollo-boost'
-import { GetServerSideProps, NextPage } from 'next'
-import Home, { HomeProps } from '@/components/Home'
+import { NextPage } from 'next'
+import { accessTokenState } from '@/atoms/app'
+import fetchdDidPlayedToken from '@/data/query/fetch-did-played-token'
+import { isToken } from '@/modules/tokenHandler'
+import { useEffect } from 'react'
+import { useRecoilValue } from 'recoil'
+import { useRouter } from 'next/dist/client/router'
 
-const fetchTodayWord = async () => {
-  const client = new ApolloClient({
-    uri: `https://api.npoem.xyz/graphql`,
-  })
+const Index: NextPage = () => {
+  //access 토큰 확인
+  const isAccessToken = isToken()
 
-  const {
-    data: {
-      todayWord: { word },
-    },
-  } = await client.query({
-    query: gql`
-      {
-        todayWord {
-          id
-          word {
-            id
-            text
-          }
-        }
+  //오늘 했는지 확인
+  const accessToken = useRecoilValue(accessTokenState)
+  const isPlayed =
+    accessToken !== '' ? fetchdDidPlayedToken(accessToken) : false
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isAccessToken) {
+      if (isPlayed) {
+        router.replace('/list')
+      } else {
+        router.replace('/poem')
       }
-    `,
-  })
+    } else {
+      router.replace('/poem')
+    }
+  }, [])
 
-  return word
+  return <></>
 }
 
-export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-  const word = await fetchTodayWord()
-
-  return {
-    props: {
-      word: word.text,
-    },
-  }
-}
-
-const Page: NextPage<HomeProps> = ({ word }) => {
-  return <Home word={word} />
-}
-
-export default Page
+export default Index
